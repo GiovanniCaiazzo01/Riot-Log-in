@@ -57,11 +57,33 @@ body {
 }
 
 #form-container form input {
+  border: none;
   width: 100%;
   padding: 14px;
-  border: solid black 3px;
   border-radius: 5px;
+  background-color: #ededed;
+  font-size: 14px;
+  font-weight: bold;
 }
+
+#form-container form input:focus {
+  border: solid black 3px;
+}
+
+#form-container form label {
+  position: absolute;
+  top: 25%;
+  left: 8%;
+  pointer-events: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: gray;
+  transition: transform 0.3s ease;
+}
+#form-container form label:focus {
+  transform: translateY(-50%);
+}
+
 #game-img-container {
   width: 100%;
   background: url(./img/wallhaven-q67mgr_1920x1080.png);
