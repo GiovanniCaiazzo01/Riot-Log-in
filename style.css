@@ -63,7 +63,7 @@ body {
 .field-holder input {
   border: none;
   width: 100%;
-  padding: 14px;
+  padding: 22px;
   border-radius: 5px;
   background-color: #ededed;
   font-size: 14px;
@@ -88,7 +88,7 @@ body {
 }
 
 .field-holder:focus-within label {
-  top: 0;
+  top: 8px;
 }
 #game-img-container {
   width: 100%;
