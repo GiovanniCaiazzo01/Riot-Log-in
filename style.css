@@ -86,10 +86,18 @@ body {
 
   pointer-events: none;
 }
-
 .field-holder:focus-within label {
   top: 8px;
+  left: 24px;
+  font-size: 12px;
 }
+
+.field-holder input:not(:focus) + label.has-value {
+  top: 8px;
+  left: 18px;
+  font-size: 12px;
+}
+
 #game-img-container {
   width: 100%;
   background: url(./img/wallhaven-q67mgr_1920x1080.png);
