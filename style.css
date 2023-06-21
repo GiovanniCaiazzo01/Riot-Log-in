@@ -51,12 +51,16 @@ body {
   margin-bottom: 15px;
 }
 
-#form-container form > * {
+.field-holder {
+  position: relative;
+}
+
+.field-holder > * {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-#form-container form input {
+.field-holder input {
   border: none;
   width: 100%;
   padding: 14px;
@@ -66,24 +70,26 @@ body {
   font-weight: bold;
 }
 
-#form-container form input:focus {
+.field-holder input:focus {
   border: solid black 3px;
 }
 
-#form-container form label {
+.field-holder label {
   position: absolute;
-  top: 25%;
-  left: 8%;
-  pointer-events: none;
+
   font-size: 14px;
   font-weight: bold;
-  color: gray;
-  transition: transform 0.3s ease;
-}
-#form-container form label:focus {
-  transform: translateY(-50%);
+  color: #757575;
+  top: 18px;
+  left: 18px;
+  transition: top 0.5s;
+
+  pointer-events: none;
 }
 
+.field-holder:focus-within label {
+  top: 0;
+}
 #game-img-container {
   width: 100%;
   background: url(./img/wallhaven-q67mgr_1920x1080.png);
