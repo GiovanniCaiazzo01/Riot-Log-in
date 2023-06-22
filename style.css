@@ -74,7 +74,7 @@ body {
 
   border: none;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #efefef;
 
   font-size: 14px;
   font-weight: bold;
@@ -140,6 +140,33 @@ body {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 20px;
+}
+
+#signed-check-box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#footer-button-container {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: red;
+  cursor: pointer;
+}
+
+#footer-button-container > img {
+  width: 30px;
+}
+#signed-check-box > label {
+  color: #757575;
 }
 
 #game-img-container {
