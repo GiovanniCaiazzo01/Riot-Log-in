@@ -2,6 +2,10 @@ html {
   height: 100%;
 }
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
   height: 100%;
   display: flex;
   background-color: #e6e6e6;
@@ -36,7 +40,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
-#left-side-column img {
+#left-side-column > img {
   width: 50%;
 }
 
@@ -60,42 +64,82 @@ body {
   margin-bottom: 15px;
 }
 
-.field-holder input {
+.field-holder > input {
+  width: 360px;
+  max-width: 360px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+
   border: none;
-  width: 100%;
-  padding: 22px;
   border-radius: 5px;
-  background-color: #ededed;
+  background-color: #f9f9f9;
+
   font-size: 14px;
   font-weight: bold;
 }
 
-.field-holder input:focus {
+.field-holder > input:focus {
   border: solid black 3px;
 }
 
-.field-holder label {
+.field-holder > label {
   position: absolute;
 
   font-size: 14px;
   font-weight: bold;
   color: #757575;
-  top: 18px;
+  top: 19px;
   left: 18px;
   transition: top 0.5s;
 
+  margin-bottom: 2px;
   pointer-events: none;
 }
-.field-holder:focus-within label {
+.field-holder:focus-within > label {
   top: 8px;
-  left: 24px;
+  left: 10px;
   font-size: 12px;
 }
 
-.field-holder input:not(:focus) + label.has-value {
+.field-holder > input:not(:focus) + label.has-value {
   top: 8px;
-  left: 18px;
+  left: 10px;
   font-size: 12px;
+}
+
+#socials-link-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  width: 85px;
+  max-width: 85px;
+  margin-right: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.facebook {
+  background-color: blue;
+}
+.google {
+  background-color: white;
+}
+.apple {
+  background-color: black;
+}
+.xbox {
+  background-color: green;
+}
+
+.social-icon > img {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 20px;
 }
 
 #game-img-container {
