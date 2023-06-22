@@ -109,6 +109,10 @@ body {
   font-size: 12px;
 }
 
+.error {
+  border-color: violet;
+  background-color: rgb(185, 120, 185);
+}
 #socials-link-container {
   width: 100%;
   display: flex;
