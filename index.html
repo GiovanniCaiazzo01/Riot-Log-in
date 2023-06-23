@@ -4,40 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Riot Log-in</title>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <section id="project-container">
-      <div id="left-side-container">
+    <section data-aos="fade-up" data-aos-delay="100" id="project-container">
+      <div data-aos="fade-up" data-aos-delay="250" id="left-side-container">
         <div id="left-side-column">
-          <img src="img/Riot_Games-Logo.wine.svg" />
+          <img
+            data-aos="fade-up"
+            data-aos-delay="350"
+            src="img/Riot_Games-Logo.wine.svg"
+          />
           <div id="form-container">
-            <h1>Sign in</h1>
+            <h1 data-aos="fade-up" data-aos-delay="450">Sign in</h1>
             <form>
-              <div class="field-holder">
+              <div data-aos="fade-up" data-aos-delay="550" class="field-holder">
                 <input type="text" id="username" />
                 <label for="username">USERNAME</label>
               </div>
-              <div class="field-holder">
+              <div data-aos="fade-up" data-aos-delay="650" class="field-holder">
                 <input type="password" id="password" />
                 <label for="password">PASSWORD</label>
               </div>
             </form>
             <div id="socials-link-container">
-              <div class="social-icon facebook">
+              <div
+                data-aos="fade-up"
+                data-aos-delay="750"
+                class="social-icon facebook"
+              >
                 <img src="./img/facebook.png" />
               </div>
-              <div class="social-icon google">
+
+              <div
+                data-aos="fade-up"
+                data-aos-delay="800"
+                class="social-icon google"
+              >
                 <img src="./img/google.png" />
               </div>
-              <div class="social-icon apple">
+
+              <div
+                data-aos="fade-up"
+                data-aos-delay="850"
+                class="social-icon apple"
+              >
                 <img src="./img/apple.png" />
               </div>
-              <div class="social-icon xbox">
+
+              <div
+                data-aos="fade-up"
+                data-aos-delay="900"
+                class="social-icon xbox"
+              >
                 <img src="./img/xbox.png" />
               </div>
             </div>
-            <div id="signed-check-box">
+
+            <div data-aos="fade-up" data-aos-delay="950" id="signed-check-box">
               <input type="checkbox" id="rember-me" />
               <label for="remeber-me">Stay signed in</label>
             </div>
@@ -49,9 +75,14 @@
           </div>
         </div>
       </div>
-      <div id="game-img-container"></div>
+      <div
+        data-aos="fade-right"
+        data-aos-delay="600"
+        id="game-img-container"
+      ></div>
     </section>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

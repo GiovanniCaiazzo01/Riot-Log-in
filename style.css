@@ -12,6 +12,27 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+#username.isFocus {
+  background-color: #ededed;
+  border: solid black 3px;
+}
+
+#password.isFocus {
+  background-color: #ededed;
+  border: solid black 3px;
+}
+
+#username.error {
+  background-color: #f4e1f6;
+  border: solid violet 3px;
+}
+
+#password.error {
+  background-color: #f4e1f6;
+  border: solid violet 3px;
+}
+
 #project-container {
   width: 95%;
   height: 95%;
@@ -23,7 +44,7 @@ body {
 #left-side-container {
   width: 35%;
 
-  background-color: #fff;
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,14 +95,10 @@ body {
 
   border: none;
   border-radius: 5px;
-  background-color: #efefef;
+  background-color: #ededed;
 
   font-size: 14px;
   font-weight: bold;
-}
-
-.field-holder > input:focus {
-  border: solid black 3px;
 }
 
 .field-holder > label {
@@ -109,10 +126,6 @@ body {
   font-size: 12px;
 }
 
-.error {
-  border-color: violet;
-  background-color: rgb(185, 120, 185);
-}
 #socials-link-container {
   width: 100%;
   display: flex;
