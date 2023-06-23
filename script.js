@@ -3,8 +3,24 @@ const label_user = document.getElementsByTagName("label")[0];
 const label_password = document.getElementsByTagName("label")[1];
 const input_username = document.getElementById("username");
 const input_password = document.getElementById("password");
+const game_image = document.getElementById("game-img-container");
 
 let filled_name, filled_password;
+
+const randomBg = () => {
+  const bg = [
+    "./img/breach-dark.jpg",
+    "./img/breach-dark.jpg",
+    "./img/not-official-jet.png",
+    "./img/viper-dark.jpg",
+  ];
+
+  const random_number = Math.floor(Math.random() * bg.length);
+  return `url(${bg[random_number]})`;
+};
+
+console.log(randomBg());
+game_image.style.backgroundImage = randomBg();
 
 function addErrorStyle(input) {
   const haveError = {
