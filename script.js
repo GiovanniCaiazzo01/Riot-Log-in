@@ -1,141 +1,158 @@
-AOS.init({
-  once: true,
-  duration: 700,
-  easing: "ease-out-cubic",
-});
+const heroSlides = [
+  {
+    image: "./img/breach-dark.jpg",
+    eyebrow: "VALORANT // BREACH",
+    title: "Break open the round.",
+    text: "Fast entry, heavy pressure, and a login screen that feels closer to a real game launcher."
+  },
+  {
+    image: "./img/not-official-jet.png",
+    eyebrow: "VALORANT // JETT",
+    title: "Move quick. Hit clean.",
+    text: "Sharper interactions, better spacing, and a more premium Riot-inspired look from top to bottom."
+  },
+  {
+    image: "./img/viper-dark.jpg",
+    eyebrow: "VALORANT // VIPER",
+    title: "Stay cold. Stay precise.",
+    text: "A stronger front-end structure with clearer validation, polished states, and better mobile behavior."
+  }
+];
 
 const DEMO_CREDENTIALS = {
   username: "admin",
-  password: "admin",
+  password: "admin"
 };
 
-const backgrounds = [
-  "./img/breach-dark.jpg",
-  "./img/not-official-jet.png",
-  "./img/viper-dark.jpg",
-];
+const visualPanel = document.getElementById("visualPanel");
+const heroEyebrow = document.getElementById("heroEyebrow");
+const heroTitle = document.getElementById("heroTitle");
+const heroText = document.getElementById("heroText");
 
 const form = document.getElementById("loginForm");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
+const usernameField = document.getElementById("usernameField");
+const passwordField = document.getElementById("passwordField");
 const togglePasswordBtn = document.getElementById("togglePassword");
-const heroSection = document.getElementById("game-img-container");
+const submitBtn = document.getElementById("submitBtn");
 const statusMessage = document.getElementById("statusMessage");
-const submitButton = document.getElementById("footer-button-container");
 
-function setRandomBackground() {
-  const randomIndex = Math.floor(Math.random() * backgrounds.length);
-  heroSection.style.backgroundImage = `url("${backgrounds[randomIndex]}")`;
+let currentSlideIndex = Math.floor(Math.random() * heroSlides.length);
+
+function setHeroSlide(index) {
+  const slide = heroSlides[index];
+  visualPanel.style.backgroundImage = `url("${slide.image}")`;
+  heroEyebrow.textContent = slide.eyebrow;
+  heroTitle.textContent = slide.title;
+  heroText.textContent = slide.text;
 }
 
-function setError(input, message = "") {
-  const group = input.closest(".input-group");
-  group.classList.add("error");
-  input.setAttribute("aria-invalid", "true");
-  group.classList.remove("shake");
-  void group.offsetWidth;
-  group.classList.add("shake");
-
-  if (message) {
-    showStatus(message, "error");
-  }
-}
-
-function clearError(input) {
-  const group = input.closest(".input-group");
-  group.classList.remove("error");
-  group.classList.remove("shake");
-  input.setAttribute("aria-invalid", "false");
+function cycleHeroSlide() {
+  currentSlideIndex = (currentSlideIndex + 1) % heroSlides.length;
+  setHeroSlide(currentSlideIndex);
 }
 
 function showStatus(message, type = "") {
   statusMessage.textContent = message;
   statusMessage.className = "status-message";
-  if (type) {
-    statusMessage.classList.add(type);
-  }
+  if (type) statusMessage.classList.add(type);
 }
 
-function validateFields() {
-  let isValid = true;
+function clearFieldError(field, input) {
+  field.classList.remove("error", "shake");
+  input.setAttribute("aria-invalid", "false");
+}
 
+function setFieldError(field, input) {
+  field.classList.remove("shake");
+  void field.offsetWidth;
+  field.classList.add("error", "shake");
+  input.setAttribute("aria-invalid", "true");
+}
+
+function clearAllErrors() {
+  clearFieldError(usernameField, usernameInput);
+  clearFieldError(passwordField, passwordInput);
+}
+
+function validateForm() {
   const username = usernameInput.value.trim();
   const password = passwordInput.value.trim();
 
-  clearError(usernameInput);
-  clearError(passwordInput);
+  clearAllErrors();
   showStatus("");
 
+  let valid = true;
+
   if (!username) {
-    setError(usernameInput, "Please enter your username.");
-    isValid = false;
+    setFieldError(usernameField, usernameInput);
+    showStatus("Enter your username.", "error");
+    valid = false;
   }
 
   if (!password) {
-    if (isValid) {
-      showStatus("Please enter your password.", "error");
-    }
-    setError(passwordInput);
-    isValid = false;
+    setFieldError(passwordField, passwordInput);
+    if (valid) showStatus("Enter your password.", "error");
+    valid = false;
   }
 
-  if (!isValid) return false;
+  if (!valid) return false;
 
-  if (username !== DEMO_CREDENTIALS.username) {
-    setError(usernameInput, "Username or password is incorrect.");
-    isValid = false;
+  if (username !== DEMO_CREDENTIALS.username || password !== DEMO_CREDENTIALS.password) {
+    setFieldError(usernameField, usernameInput);
+    setFieldError(passwordField, passwordInput);
+    showStatus("Invalid username or password.", "error");
+    return false;
   }
 
-  if (password !== DEMO_CREDENTIALS.password) {
-    setError(passwordInput, "Username or password is incorrect.");
-    isValid = false;
-  }
-
-  return isValid;
+  return true;
 }
 
-function handleLogin(event) {
+function handleSubmit(event) {
   event.preventDefault();
 
-  const isValid = validateFields();
+  if (!validateForm()) return;
 
-  if (!isValid) return;
-
-  submitButton.disabled = true;
+  submitBtn.disabled = true;
   showStatus("Signing you in...", "success");
 
   setTimeout(() => {
-    showStatus("Demo sign-in successful. Replace this with your real backend flow.", "success");
-    submitButton.disabled = false;
+    showStatus("Demo login successful. Connect this form to a real backend next.", "success");
+    submitBtn.disabled = false;
   }, 900);
 }
 
 function togglePasswordVisibility() {
-  const isPassword = passwordInput.type === "password";
-  passwordInput.type = isPassword ? "text" : "password";
-  togglePasswordBtn.textContent = isPassword ? "Hide" : "Show";
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  togglePasswordBtn.textContent = isHidden ? "Hide" : "Show";
   togglePasswordBtn.setAttribute(
     "aria-label",
-    isPassword ? "Hide password" : "Show password"
+    isHidden ? "Hide password" : "Show password"
   );
 }
 
 [usernameInput, passwordInput].forEach((input) => {
   input.addEventListener("input", () => {
-    if (input.value.trim()) {
-      clearError(input);
-      if (!statusMessage.classList.contains("success")) {
-        showStatus("");
-      }
+    const field = input.closest(".field");
+    field.classList.remove("error", "shake");
+    input.setAttribute("aria-invalid", "false");
+
+    if (statusMessage.classList.contains("error")) {
+      showStatus("");
     }
   });
 
   input.addEventListener("focus", () => {
-    clearError(input);
+    const field = input.closest(".field");
+    field.classList.remove("error", "shake");
+    input.setAttribute("aria-invalid", "false");
   });
 });
 
 togglePasswordBtn.addEventListener("click", togglePasswordVisibility);
-form.addEventListener("submit", handleLogin);
+form.addEventListener("submit", handleSubmit);
 
-setRandomBackground();
+setHeroSlide(currentSlideIndex);
+setInterval(cycleHeroSlide, 7000);

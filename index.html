@@ -4,126 +4,140 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Riot Sign In</title>
-
     <link
       rel="shortcut icon"
       href="./img/Riot_Games_2019_(Symbol).svg"
       type="image/x-icon"
     />
-    <link
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <main id="project-container" data-aos="fade-up" data-aos-duration="900">
-      <section id="left-side-container" data-aos="fade-up" data-aos-delay="150">
-        <div id="left-side-column">
-          <img
-            id="riot-logo"
-            src="./img/Riot_Games-Logo.wine.svg"
-            alt="Riot Games logo"
-            data-aos="fade-up"
-            data-aos-delay="250"
-          />
+    <div class="bg-blur blur-1"></div>
+    <div class="bg-blur blur-2"></div>
 
-          <div id="form-container">
-            <div class="heading-block" data-aos="fade-up" data-aos-delay="350">
-              <h1>Sign in</h1>
-              <p>Welcome back. Log in to continue.</p>
+    <main class="app-shell">
+      <section class="visual-panel" id="visualPanel" aria-label="Game artwork">
+        <div class="visual-overlay"></div>
+
+        <div class="visual-top">
+          <span class="tag">RIOT ACCOUNT</span>
+        </div>
+
+        <div class="visual-content">
+          <p class="eyebrow" id="heroEyebrow">VALORANT //</p>
+          <h1 id="heroTitle">Play bold. Queue faster. Stay locked in.</h1>
+          <p id="heroText">
+            A sharper Riot-style sign-in experience with stronger visual design,
+            cleaner UX, and better interaction states.
+          </p>
+
+          <div class="feature-row">
+            <div class="feature-card">
+              <span class="feature-label">Fast access</span>
+              <strong>Get in fast and stay in control</strong>
             </div>
-
-            <form id="loginForm" novalidate>
-              <div class="input-group" data-aos="fade-up" data-aos-delay="450">
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder=" "
-                  autocomplete="username"
-                  aria-describedby="statusMessage"
-                />
-                <label for="username">Username</label>
-              </div>
-
-              <div class="input-group password-group" data-aos="fade-up" data-aos-delay="550">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder=" "
-                  autocomplete="current-password"
-                  aria-describedby="statusMessage"
-                />
-                <label for="password">Password</label>
-                <button
-                  type="button"
-                  id="togglePassword"
-                  class="password-toggle"
-                  aria-label="Show password"
-                >
-                  Show
-                </button>
-              </div>
-
-              <div id="row-actions" data-aos="fade-up" data-aos-delay="650">
-                <label id="signed-check-box" for="remember-me">
-                  <input type="checkbox" id="remember-me" name="remember-me" />
-                  <span>Stay signed in</span>
-                </label>
-
-                <a href="#" class="text-link">Forgot password?</a>
-              </div>
-
-              <div id="socials-link-container" data-aos="fade-up" data-aos-delay="750">
-                <button type="button" class="social-icon facebook" aria-label="Continue with Facebook">
-                  <img src="./img/facebook.png" alt="Facebook" />
-                </button>
-
-                <button type="button" class="social-icon google" aria-label="Continue with Google">
-                  <img src="./img/google.png" alt="Google" />
-                </button>
-
-                <button type="button" class="social-icon apple" aria-label="Continue with Apple">
-                  <img src="./img/apple.png" alt="Apple" />
-                </button>
-
-                <button type="button" class="social-icon xbox" aria-label="Continue with Xbox">
-                  <img src="./img/xbox.png" alt="Xbox" />
-                </button>
-              </div>
-
-              <p id="statusMessage" class="status-message" aria-live="polite"></p>
-
-              <button
-                type="submit"
-                id="footer-button-container"
-                data-aos="fade-up"
-                data-aos-delay="850"
-              >
-                <span>Sign in</span>
-                <img src="./img/arrow-right.svg" alt="" aria-hidden="true" />
-              </button>
-            </form>
+            <div class="feature-card">
+              <span class="feature-label">Modern UI</span>
+              <strong>Built to look sharp and play hard</strong>
+            </div>
           </div>
         </div>
       </section>
 
-      <section
-        id="game-img-container"
-        data-aos="fade-left"
-        data-aos-delay="300"
-      >
-        <div class="overlay"></div>
-        <div class="hero-content">
-          <span class="eyebrow">Valorant Universe</span>
-          <h2>Play bold. Win smart.</h2>
+      <section class="auth-panel">
+        <div class="auth-card">
+          <img
+            class="riot-logo"
+            src="./img/Riot_Games-Logo.wine.svg"
+            alt="Riot Games"
+          />
+
+          <div class="heading-block">
+            <h2>Sign in</h2>
+            <p>Use your Riot Account to continue.</p>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="field" id="usernameField">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder=" "
+                autocomplete="username"
+                aria-describedby="statusMessage"
+              />
+              <label for="username">Username</label>
+            </div>
+
+            <div class="field password-field" id="passwordField">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder=" "
+                autocomplete="current-password"
+                aria-describedby="statusMessage"
+              />
+              <label for="password">Password</label>
+              <button
+                type="button"
+                class="toggle-password"
+                id="togglePassword"
+                aria-label="Show password"
+              >
+                Show
+              </button>
+            </div>
+
+            <div class="form-row">
+              <label class="remember-me" for="remember-me">
+                <input type="checkbox" id="remember-me" name="remember-me" />
+                <span>Stay signed in</span>
+              </label>
+
+              <a href="#" class="helper-link">Can't sign in?</a>
+            </div>
+
+            <button type="submit" class="sign-in-btn" id="submitBtn">
+              <span>Sign In</span>
+              <img src="./img/arrow-right.svg" alt="" aria-hidden="true" />
+            </button>
+
+            <p id="statusMessage" class="status-message" aria-live="polite"></p>
+
+            <div class="divider">
+              <span>OR CONTINUE WITH</span>
+            </div>
+
+            <div class="social-grid">
+              <button type="button" class="social-btn facebook" aria-label="Continue with Facebook">
+                <img src="./img/facebook.png" alt="Facebook" />
+              </button>
+              <button type="button" class="social-btn google" aria-label="Continue with Google">
+                <img src="./img/google.png" alt="Google" />
+              </button>
+              <button type="button" class="social-btn apple" aria-label="Continue with Apple">
+                <img src="./img/apple.png" alt="Apple" />
+              </button>
+              <button type="button" class="social-btn xbox" aria-label="Continue with Xbox">
+                <img src="./img/xbox.png" alt="Xbox" />
+              </button>
+            </div>
+
+            <div class="demo-box">
+              <span class="demo-label">Demo credentials</span>
+              <strong>admin / admin</strong>
+            </div>
+          </form>
+
+          <p class="legal-text">
+            This is a front-end concept. Do not handle real authentication in client-side JavaScript.
+          </p>
         </div>
       </section>
     </main>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
