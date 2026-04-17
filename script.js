@@ -2,20 +2,20 @@ const heroSlides = [
   {
     image: "./img/breach-dark.jpg",
     eyebrow: "VALORANT // BREACH",
-    title: "Break open the round.",
-    text: "Fast entry, heavy pressure, and a login screen that feels closer to a real game launcher."
+    title: "Break in. Take control.",
+    text: "Sign in to access your Riot Account and return to the fight."
   },
   {
     image: "./img/not-official-jet.png",
     eyebrow: "VALORANT // JETT",
-    title: "Move quick. Hit clean.",
-    text: "Sharper interactions, better spacing, and a more premium Riot-inspired look from top to bottom."
+    title: "Ready when you are.",
+    text: "Log in, squad up, and get back to the matches that matter."
   },
   {
     image: "./img/viper-dark.jpg",
     eyebrow: "VALORANT // VIPER",
-    title: "Stay cold. Stay precise.",
-    text: "A stronger front-end structure with clearer validation, polished states, and better mobile behavior."
+    title: "Precision starts here.",
+    text: "Access your account to continue your journey, unlocks, and progress."
   }
 ];
 
