@@ -89,7 +89,7 @@ a {
 .app-shell {
   position: relative;
   z-index: 1;
-  width: min(1360px, 100%);
+  width: min(80%, 100%);
   min-height: 90vh;
   display: grid;
   grid-template-columns: 1.2fr 0.92fr;
