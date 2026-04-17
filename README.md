@@ -1,20 +1,8 @@
-# Riot Games Login Visual Emulation
-This project is a simple visual implementation of the Riot Games login interface, recreated for the web. The goal is to emulate the look and feel of the Riot Games desktop application login using HTML, CSS, and JavaScript.
+# Riot Login UI
+
+A polished Riot / Valorant-inspired login experience built with HTML, CSS, and JavaScript.
+<img width="2281" height="1400" alt="image" src="https://github.com/user-attachments/assets/196cb881-1dcf-4a85-bf52-71529401d1ea" />
+
 
 ## Demo
 Check out the live demo [here](https://giovannicaiazzo01.github.io/Riot-Log-in/)!
-
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
-
-## Usage Instructions
-1. Clone the repository or download the source files.
-2. Open the `index.html` file in your web browser.
-3. Experience the emulated Riot Games login interface.
-
-
-## Contributions
-Contributions to enhance the project are welcome. If you would like to contribute, please open a pull request specifying the changes made.
-
