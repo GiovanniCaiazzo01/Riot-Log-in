@@ -1,79 +1,141 @@
-AOS.init();
-const label_user = document.getElementsByTagName("label")[0];
-const label_password = document.getElementsByTagName("label")[1];
-const input_username = document.getElementById("username");
-const input_password = document.getElementById("password");
-const game_image = document.getElementById("game-img-container");
+AOS.init({
+  once: true,
+  duration: 700,
+  easing: "ease-out-cubic",
+});
 
-let filled_name, filled_password;
-
-const randomBg = () => {
-  const bg = [
-    "./img/breach-dark.jpg",
-    "./img/breach-dark.jpg",
-    "./img/not-official-jet.png",
-    "./img/viper-dark.jpg",
-  ];
-
-  const random_number = Math.floor(Math.random() * bg.length);
-  return `url(${bg[random_number]})`;
+const DEMO_CREDENTIALS = {
+  username: "admin",
+  password: "admin",
 };
 
-console.log(randomBg());
-game_image.style.backgroundImage = randomBg();
+const backgrounds = [
+  "./img/breach-dark.jpg",
+  "./img/not-official-jet.png",
+  "./img/viper-dark.jpg",
+];
 
-function addErrorStyle(input) {
-  const haveError = {
-    username: () => {
-      input.classList.add("error");
-    },
-    password: () => {
-      input.classList.add("error");
-    },
-  };
-  return haveError[input.id]();
+const form = document.getElementById("loginForm");
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+const togglePasswordBtn = document.getElementById("togglePassword");
+const heroSection = document.getElementById("game-img-container");
+const statusMessage = document.getElementById("statusMessage");
+const submitButton = document.getElementById("footer-button-container");
+
+function setRandomBackground() {
+  const randomIndex = Math.floor(Math.random() * backgrounds.length);
+  heroSection.style.backgroundImage = `url("${backgrounds[randomIndex]}")`;
 }
 
-input_username.addEventListener("input", (e) => {
-  filled_name = e.target.value;
-  if (filled_name) {
-    return label_user.classList.add("has-value");
-  }
-  return label_user.classList.remove("has-value");
-});
+function setError(input, message = "") {
+  const group = input.closest(".input-group");
+  group.classList.add("error");
+  input.setAttribute("aria-invalid", "true");
+  group.classList.remove("shake");
+  void group.offsetWidth;
+  group.classList.add("shake");
 
-input_password.addEventListener("input", (e) => {
-  filled_password = e.target.value;
-  if (filled_password) {
-    return label_password.classList.add("has-value");
-  }
-
-  return label_password.classList.remove("has-value");
-});
-
-input_username.addEventListener("focus", (e) => {
-  input_username.classList.remove("error");
-  return input_username.classList.add("isFocus");
-});
-
-input_username.addEventListener("blur", (e) => {
-  return input_username.classList.remove("isFocus");
-});
-
-input_password.addEventListener("focus", (e) => {
-  input_password.classList.remove("error");
-  return input_password.classList.add("isFocus");
-});
-
-input_password.addEventListener("blur", (e) => {
-  return input_password.classList.remove("isFocus");
-});
-
-function checkUserCredentials() {
-  if (!filled_name || filled_name !== "admin") {
-    addErrorStyle(input_username);
-  }
-  if (!filled_password || filled_password !== "admin") {
-    addErrorStyle(input_password);
+  if (message) {
+    showStatus(message, "error");
   }
 }
+
+function clearError(input) {
+  const group = input.closest(".input-group");
+  group.classList.remove("error");
+  group.classList.remove("shake");
+  input.setAttribute("aria-invalid", "false");
+}
+
+function showStatus(message, type = "") {
+  statusMessage.textContent = message;
+  statusMessage.className = "status-message";
+  if (type) {
+    statusMessage.classList.add(type);
+  }
+}
+
+function validateFields() {
+  let isValid = true;
+
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  clearError(usernameInput);
+  clearError(passwordInput);
+  showStatus("");
+
+  if (!username) {
+    setError(usernameInput, "Please enter your username.");
+    isValid = false;
+  }
+
+  if (!password) {
+    if (isValid) {
+      showStatus("Please enter your password.", "error");
+    }
+    setError(passwordInput);
+    isValid = false;
+  }
+
+  if (!isValid) return false;
+
+  if (username !== DEMO_CREDENTIALS.username) {
+    setError(usernameInput, "Username or password is incorrect.");
+    isValid = false;
+  }
+
+  if (password !== DEMO_CREDENTIALS.password) {
+    setError(passwordInput, "Username or password is incorrect.");
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+
+  const isValid = validateFields();
+
+  if (!isValid) return;
+
+  submitButton.disabled = true;
+  showStatus("Signing you in...", "success");
+
+  setTimeout(() => {
+    showStatus("Demo sign-in successful. Replace this with your real backend flow.", "success");
+    submitButton.disabled = false;
+  }, 900);
+}
+
+function togglePasswordVisibility() {
+  const isPassword = passwordInput.type === "password";
+  passwordInput.type = isPassword ? "text" : "password";
+  togglePasswordBtn.textContent = isPassword ? "Hide" : "Show";
+  togglePasswordBtn.setAttribute(
+    "aria-label",
+    isPassword ? "Hide password" : "Show password"
+  );
+}
+
+[usernameInput, passwordInput].forEach((input) => {
+  input.addEventListener("input", () => {
+    if (input.value.trim()) {
+      clearError(input);
+      if (!statusMessage.classList.contains("success")) {
+        showStatus("");
+      }
+    }
+  });
+
+  input.addEventListener("focus", () => {
+    clearError(input);
+  });
+});
+
+togglePasswordBtn.addEventListener("click", togglePasswordVisibility);
+form.addEventListener("submit", handleLogin);
+
+setRandomBackground();
